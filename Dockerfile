@@ -1,5 +1,5 @@
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Dockerfile for Runner668/php-7.4
+# Dockerfile for Runner668/php:7.4
 #
 # Based on webdevops/Dockerfile
 # (https://github.com/webdevops/Dockerfile/tree/master/docker/php-official/7.4)
