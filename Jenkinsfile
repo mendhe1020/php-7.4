@@ -2,34 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the code from your version control system (e.g., Git)
-                script {
-                    checkout scm
-                }
-            }
-        }
 
-        stage('Build') {
+        stage("Code") {
             steps {
-                // Execute build commands for your PHP project
                 script {
-                    sh 'composer install'  // Example command for a PHP project using Composer
+                    // Determine the branch name dynamically
+                    def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    echo "Current branch: ${branchName}"
+                    
+                    git url: "https://github.com/mendhe1020/php-7.4.git", branch: branchName
                 }
             }
+        
         }
-
-        stage('Deploy') {
-            steps {
-                // Deploy your application to the desired environment
-                script {
-                    // Add your deployment commands here
-                    // For example, deploy to a web server or container orchestration platform
-                }
-            }
         }
-    }
 
     post {
         success {
